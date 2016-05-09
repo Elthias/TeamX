@@ -24,6 +24,7 @@ public class Easter {
 		names += "Dovi Bergman\n";
 		names += "David Rainey\n";
 		names += "Sukhpreet Jawandha\n";
+		names += "Sarjodh Dhillon";
 		// Insert subsequent lines here.
 	}
 	
