@@ -23,6 +23,7 @@ public class Easter {
 		names += "Ken Patterson: 'Tigertron!'\n";
 		names += "Dovi Bergman\n";
 		names += "David Rainey\n";
+		names += "Sukhpreet Jawandha\n";
 		// Insert subsequent lines here.
 	}
 	
