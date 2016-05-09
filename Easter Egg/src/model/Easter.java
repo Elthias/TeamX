@@ -8,6 +8,7 @@ package model;
  * 
  * @author Kenneth Patterson
  * @author Dovi Bergman
+ * @author David Rainey
  * 
  */
 public class Easter {
@@ -21,6 +22,7 @@ public class Easter {
 		names = "We are Team X! Form up!\n";
 		names += "Ken Patterson: 'Tigertron!'\n";
 		names += "Dovi Bergman\n";
+		names += "David Rainey\n";
 		// Insert subsequent lines here.
 	}
 	
