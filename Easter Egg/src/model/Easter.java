@@ -7,7 +7,8 @@ package model;
  * Simple class that outputs the name of each member of our team along with a simple message.
  * 
  * @author Kenneth Patterson
- * @author 
+ * @author Dovi Bergman
+ * 
  */
 public class Easter {
 	/** String to hold the names of our team members. */
@@ -19,6 +20,7 @@ public class Easter {
 	public Easter() {
 		names = "We are Team X! Form up!\n";
 		names += "Ken Patterson: 'Tigertron!'\n";
+		names += "Dovi Bergman\n";
 		// Insert subsequent lines here.
 	}
 	
