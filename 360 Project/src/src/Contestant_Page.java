@@ -13,16 +13,50 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * This class is the Contestant_Page to submit the entry. It is also GUI with action listeners. It perform
+ * all the actions User submit the entry by communicating with the Entry_database class.
+ * 
+<<<<<<< HEAD
+ * @author Sukhpreet Jawandha
+ * @since 5/24/2016
+=======
+ * @author Dovi Bergman, Sukhpreet Jawandha
+ * @version Last Modified 5/25/2016
+>>>>>>> branch 'master' of https://github.com/Elthias/TeamX
+ */
 
 
 public class Contestant_Page {
-	private JPanel myP;
-	private JFrame myFrame;
-	private JPanel myP1;
-	private JPanel myP2;
-	private JPanel myP3;
+	/**
+	 * Frame to add panel.
+	 */
+	private final JFrame myFrame;
+
+	/**
+	 * Main panel for Login Page with title name.
+	 */
+	private final JPanel myP;
+
+	/**
+	 * Panel to cover the space.
+	 */
+	private final JPanel myP1;
+
+	/**
+	 * Panel for Account Login and password fields and labels.
+	 */
+	private final JPanel myP2;
+
+	/**
+	 * Panel for Login Button.
+	 */
+	private final JPanel myP3;
 
 
+	/**
+	 * Constructor of Contestant page. It initialize all fields and call some methods with layout.
+	 */
 	public Contestant_Page() {
 		myFrame = new JFrame();
 		myP = new JPanel();
@@ -47,10 +81,9 @@ public class Contestant_Page {
 		entry();
 	}
 
-
-
-
-
+	/**
+	 * This function creates the buttons, label and fields to submit the entry and adds to the main panel.
+	 */
 	private void entry() {
 		final JLabel entryName = new JLabel("Entry Name :" );
 		entryName.setFont(new Font("Serif", Font.BOLD, 20));
@@ -83,7 +116,9 @@ public class Contestant_Page {
 		delete.setVisible(false);
 	}
 
-
+	/**
+	 * It sets the frame and positions.
+	 */
 	private void setFrame() {
 		myFrame.requestFocus();
 		myFrame.setMinimumSize(new Dimension(600, 600));
@@ -94,4 +129,3 @@ public class Contestant_Page {
 	}
 
 }
-
