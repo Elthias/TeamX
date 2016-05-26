@@ -9,13 +9,13 @@ import javax.swing.JPanel;
  */
 public class Librarian_Page {
 	
-	JPanel myPanel;
+	JFrame myFrame;
 	
 	logout() {
 		button logoutButton = new JButton(new ActionListener() {
 			
 			public void ActionPerformed(ActionEvent theEvent) {
-				myPanel.hide();
+				myFrame.
 			}
 		});		
 	}
