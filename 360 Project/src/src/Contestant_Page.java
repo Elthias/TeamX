@@ -28,6 +28,17 @@ import javax.swing.JTextField;
 
 
 public class Contestant_Page {
+
+	/**
+	 * field to keep track of entry.
+	 */
+	private final Entry myEntry;
+
+	/**
+	 * field for entry database.
+	 */
+	private Entry_Database myEntryData;
+
 	/**
 	 * Frame to add panel.
 	 */
@@ -76,15 +87,15 @@ public class Contestant_Page {
 		myP1.add(myP3);
 
 		myFrame.add(myP);
+		SetFrame();
+		Entry();
 
-		setFrame();
-		entry();
 	}
 
 	/**
 	 * This function creates the buttons, label and fields to submit the entry and adds to the main panel.
 	 */
-	private void entry() {
+	private void Entry() {
 		final JLabel entryName = new JLabel("Entry Name :" );
 		entryName.setFont(new Font("Serif", Font.BOLD, 20));
 		entryName.setForeground(Color.WHITE);
@@ -111,15 +122,18 @@ public class Contestant_Page {
 		submit.setEnabled(false);
 		myP1.add(submit);
 
-		JButton delete = new JButton("Delete");
+		JButton delete = new JButton("Delete Entry");
 		myP1.add(delete);
 		delete.setVisible(false);
+
+		JButton logout = new JButton("Logout");
+		myP1.add(logout);
 	}
 
 	/**
 	 * It sets the frame and positions.
 	 */
-	private void setFrame() {
+	private void SetFrame() {
 		myFrame.requestFocus();
 		myFrame.setMinimumSize(new Dimension(600, 600));
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
