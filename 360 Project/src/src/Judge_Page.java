@@ -11,13 +11,10 @@ public class Judge_Page {
 	
 	JPanel myPanel;
 	
+	
 	logout() {
-		button logoutButton = new JButton(new ActionListener() {
-			
-			public void ActionPerformed(ActionEvent theEvent) {
-				myPanel.hide();
-			}
-		});		
+		Button logoutButton = new JButton("Logout");
+		logoutButton.addActionListener(new ExitAction());	
 	}
 	
 }

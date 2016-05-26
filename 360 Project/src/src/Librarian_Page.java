@@ -1,5 +1,8 @@
 package src;
 
+import java.awt.Button;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -12,12 +15,8 @@ public class Librarian_Page {
 	JFrame myFrame;
 	
 	logout() {
-		button logoutButton = new JButton(new ActionListener() {
-			
-			public void ActionPerformed(ActionEvent theEvent) {
-				myFrame.
-			}
-		});		
+		Button logoutButton = new JButton("Logout");
+		logoutButton.addActionListener(new ExitAction());
 	}
 	
 }

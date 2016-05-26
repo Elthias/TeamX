@@ -127,6 +127,7 @@ public class Contestant_Page {
 		delete.setVisible(false);
 
 		JButton logout = new JButton("Logout");
+		
 		myP1.add(logout);
 	}
 
