@@ -186,53 +186,55 @@ public class Login_Page {
 	}
 	
 	/**
-	 * Class for login actions implementing action listenes and apply on button or fields.
-	 * 
-	 * @author dovi
+	 * Class for login actions implementing action listener and applied on button or fields.
+	 * Designed for use with the Login_Page login button.
+	 * Processes a login attempt by communicating with Login_Page's myLogin_Database field.
+	 * If the login is successful, the LoginAction will empty the JTextFields, and open the appropriate
+	 * user page on top of the LoginPage JPanel, hiding it from view until that user page closes itself.
+	 * @author Dovi Bergman
 	 *
 	 */
 	public class LoginAction implements ActionListener {
 		
+		/**
+		 * Fields for the ID number, Password, Role, and a boolean for whether the login is valid.
+		 */
 		private int myID;
 		private String myPassword;
 		private String myRole;
 		private boolean myValidLogin;
 		
-		public int getMyID() {
-			return myID;
-		}
-		
-		public String getMyPassword() {
-			return myPassword;
-		}
-		
-		public String getMyRole() {
-			return myRole;
-		}
-		
-		public boolean isMyValidLogin() {
-			return myValidLogin;
-		}
-		
+		/**
+		 * A constructor for a LoginAction that takes 2 parameters
+		 * @param theId = the ID number for looking up a user
+		 * @param thePassword = the password that was entered for that user.
+		 */
 		public LoginAction (int theID, String thePassword) {
 			myID = theID;
 			myPassword = thePassword;
 		}
 		
+		/**
+		 * The action performed by the action.
+		 * @param theEvent = the ActionEvent that triggers this action, which chould be a button press of the login button.
+		 */
 		public void actionPerformed(ActionEvent theEvent) {
 			myValidLogin = myLogin_Database.checkLogin(theID, thePassword);
 			if (myValidLogin) {
 				myRole = myLogin_Database.getRole(theID);
+				login (myRole);
 			}
-			login (myRole);
+			
 		}
 		
+		/**
+		 * Logs the user in and displays their login page after resetting the JTextFields for ID and Password.
+		 * @param theRole = the role retrieved for this user from the Login_Database. 
+		 */
 		public boolean login (String theRole) {
 			
 			myPassField.setText(null);
 			myIDField.setText(null);
-			//reset the text fields
-			return myValidLogin;
 			
 			if (theRole == "judge") {
 				Judge_Page jPage = new Judge_Page();
@@ -244,6 +246,8 @@ public class Login_Page {
 				Contestant_Page cPage = new Contestant_Page();
 				myFrame.add(cPage.myPanel);
 			}
+			
+			return myValidLogin;
 			
 		}
 	}
