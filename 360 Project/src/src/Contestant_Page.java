@@ -133,6 +133,24 @@ public class Contestant_Page {
 		});		
 		myP1.add(myCombo);
 
+		JButton delete = new JButton("Delete Entry");
+		delete.addActionListener(new ActionListener() {
+			@override
+			public void actionPerformed(ActionEvent theEvent) {
+				myEntryData.deleteEntry(myID);
+				delete.setVisible(false);
+				submit.setVisible(true);
+				cate.setVisible(true);
+				myCombo.setVisible(true);
+				name.setEditable(true);
+			}
+		});
+		myP1.add(delete);
+		delete.setVisible(false);
+
+		JButton logout = new JButton("Logout");
+		logout.addActionListener(new ExitAction());
+		myP1.add(logout);
 		JButton chooseFile = new JButton("Choose a file...");
 		myP1.add(chooseFile);
 
@@ -141,18 +159,17 @@ public class Contestant_Page {
 		submit.addActionListener(new ActionListener() {
 			@override
 			public void actionPerformed(ActionEvent theEvent) {
-				myEntryDatabase.addEntry(myID,myEntry);
+				myEntryData.addEntry(myID, myEntry);
+				delete.setVisible(true);
+				submit.setVisible(false);
+				submit.setVisible(false);
+				cate.setVisible(false);
+				myCombo.setVisible(false);
+				name.setEditable(false);
 			}
 		});
 		myP1.add(submit);
 
-		JButton delete = new JButton("Delete Entry");
-		myP1.add(delete);
-		delete.setVisible(false);
-
-		JButton logout = new JButton("Logout");
-		logout.addActionListener(new ExitAction());
-		myP1.add(logout);
 	}
 
 	/**
