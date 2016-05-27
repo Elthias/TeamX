@@ -222,7 +222,7 @@ public class Login_Page {
 			myValidLogin = myLogin_Database.checkLogin(theID, thePassword);
 			if (myValidLogin) {
 				myRole = myLogin_Database.getRole(theID);
-				login (myRole);
+				login (myRole, myID);
 			}
 			
 		}
@@ -230,21 +230,19 @@ public class Login_Page {
 		/**
 		 * Logs the user in and displays their login page after resetting the JTextFields for ID and Password.
 		 * @param theRole = the role retrieved for this user from the Login_Database. 
+		 * @param theID = the ID number of the user logging in.
 		 */
-		public boolean login (String theRole) {
+		public boolean login (String theRole, int theID) {
 			
 			myPassField.setText(null);
 			myIDField.setText(null);
 			
 			if (theRole == "judge") {
 				Judge_Page jPage = new Judge_Page();
-				myFrame.add(jPage.myPanel);
 			} else if (theRole == "librarian") {
 				Librarian_Page lPage = new Librarian_Page();
-				myFrame.add(lPage.myPanel);
 			} else if (theRole == "contestant") {
-				Contestant_Page cPage = new Contestant_Page();
-				myFrame.add(cPage.myPanel);
+				Contestant_Page cPage = new Contestant_Page(theID);
 			}
 			
 			return myValidLogin;

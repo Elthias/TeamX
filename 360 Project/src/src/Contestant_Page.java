@@ -30,6 +30,10 @@ import javax.swing.JTextField;
 public class Contestant_Page {
 
 	/**
+	 * field with the userID for this instance of the page
+	 */
+	
+	/**
 	 * field to keep track of entry.
 	 */
 	private final Entry myEntry;
@@ -66,9 +70,12 @@ public class Contestant_Page {
 
 
 	/**
-	 * Constructor of Contestant page. It initialize all fields and call some methods with layout.
+	 * Constructor of Contestant page. It initializes all fields and calls some methods with layout.
+	 * @param the ID number of the user who opened this page
 	 */
-	public Contestant_Page() {
+	public Contestant_Page(int theUserID) {
+		myID = theUserID;
+		myEntry = new Entry();
 		myFrame = new JFrame();
 		myP = new JPanel();
 		myP.setBackground(Color.YELLOW.darker().darker());
@@ -103,6 +110,12 @@ public class Contestant_Page {
 		myP1.add(entryName);
 		JTextField name = new JTextField("", 12);
 		name.setLocation(10, 10);
+		name.addActionListener(new ActionListener() {
+			@override
+			public void actionPerformed(ActionEvent theEvent) {
+				myEntry.setMyName(name.getText());
+			}
+		});
 		myP1.add(name);
 
 		final JLabel cate = new JLabel("Categories:");
@@ -110,16 +123,27 @@ public class Contestant_Page {
 		cate.setForeground(Color.WHITE);
 		myP1.add(cate);
 
-		String[] cat = { "Science", "US History", "Politics", "Sci-fi", "Romance"};
+		String[] cat = {"Science", "US History", "Politics", "Sci-fi", "Romance"};
 		JComboBox<?> myCombo = new JComboBox<Object>(cat);
+		myCombo.addActionListener(new ActionListener() {
+			@override
+			public void actionPerformed(ActionEvent theEvent) {
+				myEntry.setMyCategory(myCombo.getSelectedItem().toString());
+			}			
+		});		
 		myP1.add(myCombo);
 
 		JButton chooseFile = new JButton("Choose a file...");
 		myP1.add(chooseFile);
 
-
 		JButton submit = new JButton("Submit");
 		submit.setEnabled(false);
+		submit.addActionListener(new ActionListener() {
+			@override
+			public void actionPerformed(ActionEvent theEvent) {
+				myEntryDatabase.addEntry(myID,myEntry);
+			}
+		});
 		myP1.add(submit);
 
 		JButton delete = new JButton("Delete Entry");
@@ -127,7 +151,7 @@ public class Contestant_Page {
 		delete.setVisible(false);
 
 		JButton logout = new JButton("Logout");
-		
+		logout.addActionListener(new ExitAction());
 		myP1.add(logout);
 	}
 
