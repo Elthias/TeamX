@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login_Database {
-	private Map<Integer, User> myUsers;
+	private Map<Integer, User> myUser;
 	
 	public Login_Database() {
-		myUsers = new HashMap<Integer, User>();
+		myUser = new HashMap<Integer, User>();
 	}
 	
 	public String checkLogin(int theId, String thePass) {
-		User u = myUsers.get(theId);
+		User u = myUser.get(theId);
 		if(u.getPass().equals(thePass)) {
 			return u.getRole(); 
 		} else {
@@ -20,11 +20,11 @@ public class Login_Database {
 	}
 	
 	public void setRole(int theId, String theRole) {
-		User u = myUsers.get(theId);
+		User u = myUser.get(theId);
 		u.setRole(theRole);
 	}
 	
 	public void addUsers(int theId, User theUser) {
-		myUsers.put(theId, theUser);
+		myUser.put(theId, theUser);
 	}
 }

@@ -21,4 +21,9 @@ public class User {
 	public void setRole(String theRole) {
 		myRole = theRole;
 	}
+	
+	public void setPass(String thePass) {
+		myPass = thePass;
+	}
+	
 }

@@ -5,7 +5,7 @@ import java.io.File;
 public class Entry {
 	private int myId;
 	private String myName;
-	private File myEntry;
+	private File myFile;
 	private String myCategory;
 	private int myScore;
 	private String myNotes;
@@ -20,7 +20,7 @@ public class Entry {
 	}
 	
 	public void setEntry(File theFile) {
-		myEntry = theFile;
+		myFile = theFile;
 	}
 	
 	public void setScore(int theScore) {
@@ -32,7 +32,7 @@ public class Entry {
 	}
 	
 	public File getFile() {
-		return myEntry;
+		return myFile;
 	}
 	
 	public int getScore() {
