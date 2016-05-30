@@ -153,6 +153,13 @@ public class Contestant_Page {
 		myP1.add(logout);
 		JButton chooseFile = new JButton("Choose a file...");
 		myP1.add(chooseFile);
+		chooseFile.addActionListener(new ActionListener() {
+			@override
+			public void actionPerformed(ActionEvent theEvent) {
+		 JFileChooser fileChoose=new JFileChooser();
+         int fileOpen=fileChoose.showOpenDialog(myFrame);
+			}
+		});
 
 		JButton submit = new JButton("Submit");
 		submit.setEnabled(false);
