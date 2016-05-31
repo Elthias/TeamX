@@ -19,7 +19,7 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Contestant_Page();
+                //new Contestant_Page();
                 new Login_Page();
             }
         });
