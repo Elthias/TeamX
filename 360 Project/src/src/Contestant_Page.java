@@ -73,9 +73,10 @@ public class Contestant_Page {
 	 * Constructor of Contestant page. It initializes all fields and calls some methods with layout.
 	 * @param the ID number of the user who opened this page
 	 */
-	public Contestant_Page(int theUserID) {
+	public Contestant_Page(int theUserID, Entry_Database theEntryData) {
 		myID = theUserID;
 		myEntry = new Entry();
+		myEntryData = theEntryData;
 		myFrame = new JFrame();
 		myP = new JPanel();
 		myP.setBackground(Color.YELLOW.darker().darker());
