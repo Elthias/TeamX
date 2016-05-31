@@ -78,6 +78,11 @@ public class Judge_Page {
 	private JButton saveButton;
 	
 	/**
+	 * Label used to display the category which the judge is viewing.
+	 */
+	private JLabel myCategory;
+	
+	/**
 	 * Constructor of Judge page. Loads an entry database to be used in populating the database.
 	 * @param theEntryData
 	 */
@@ -90,6 +95,8 @@ public class Judge_Page {
 		myEntries = new JTable();
 		logoutButton = new JButton("Logout");
 		saveButton = new JButton("Save");
+		myCategory = new JLabel();
+		myCategory.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 24));
 		
 		myEntryData = theEntryData;
 		
@@ -125,11 +132,10 @@ public class Judge_Page {
 		myP.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		myP2.setLayout(new BorderLayout());
-		// Changed lower background to a lighter yellow
-		myP2.setBackground(new Color(255, 255, 77));
-		myP3.setBackground(new Color(255, 255, 77));
-		// Changed upper background to a light blue
-		myP1.setBackground(new Color(77, 166, 255));
+		// Changed lower background to an orange yellow
+		myP3.setBackground(new Color(240, 213, 100));
+		// Changed upper background to a royal blue
+		myP1.setBackground(new Color(29, 91, 124));
 		c.gridwidth = 3;
 		c.gridheight = 1;
 		c.gridx = 0;
@@ -151,9 +157,11 @@ public class Judge_Page {
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(0, 10, 0, 10);
 		myP3.add(saveButton, c);
+		c.gridx = 1;
+		c.anchor = GridBagConstraints.CENTER;
+		myP3.add(myCategory, c);
 		c.gridx = 2;
 		c.anchor = GridBagConstraints.EAST;
-		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(0, 10, 0, 10);
 		myP3.add(logoutButton, c);
 		myP.setVisible(true);
@@ -177,6 +185,8 @@ public class Judge_Page {
 		k = 0;
 		for (Integer i: myEntryData.keySet()) {
 			Entry x = myEntryData.getEntry(i);
+			if (myCategory.getText().equals(""))
+				myCategory.setText("Category: " + x.getCat());
 			table[k][0] = x.getName();
 			table[k][1] = x.getScore();
 			table[k][2] = x.getNotes();
