@@ -48,7 +48,7 @@ public class Login_Page {
 	 * Entry Database for the user pages
 	 */
 	
-	private final Entry_Database myEntryDatabase
+	private final Entry_Database myEntryDatabase;
 	
 	/**
 	 * Frame to add panel.
@@ -113,7 +113,7 @@ public class Login_Page {
 		myPassField = new JPasswordField(12);
 		
 		myLogin_Database = theLoginData;
-		myEntry_Database = theEntryData;
+		myEntryDatabase = theEntryData;
 			
 		myP.setLayout(new GridLayout(3, 1));
 		myP2.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -226,7 +226,7 @@ public class Login_Page {
 		 * @param theEvent = the ActionEvent that triggers this action, which chould be a button press of the login button.
 		 */
 		public void actionPerformed(ActionEvent theEvent) {
-			myRole = myLogin_Database.checkLogin(theID, thePassword);
+			myRole = myLogin_Database.checkLogin(myID, myPassword);
 			if (myRole != null) {
 				login (myRole, myID);
 			}
@@ -244,11 +244,11 @@ public class Login_Page {
 			myIDField.setText(null);
 			
 			if (theRole == "judge") {
-				Judge_Page jPage = new Judge_Page(myEntry_Database);
+				Judge_Page jPage = new Judge_Page(myEntryDatabase);
 			} else if (theRole == "librarian") {
-				Librarian_Page lPage = new Librarian_Page(myEntry_Database);
+				Librarian_Page lPage = new Librarian_Page(myEntryDatabase);
 			} else if (theRole == "contestant") {
-				Contestant_Page cPage = new Contestant_Page(theID, myEntry_Database);
+				Contestant_Page cPage = new Contestant_Page(theID, myEntryDatabase);
 			}
 			
 			return myValidLogin;

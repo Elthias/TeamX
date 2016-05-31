@@ -5,6 +5,11 @@ import java.awt.EventQueue;
 
 public class Main {
 
+
+	private static Login_Database myLoginData;
+
+	private static Entry_Database myEntryData;
+
 	
 	private Main() {
         throw new IllegalStateException();
@@ -19,11 +24,35 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+            	initializeDatabases();
                 //new Contestant_Page();
-                new Login_Page();
+                new Login_Page(myLoginData,myEntryData);
             }
         });
     }
+    
+    public static void initializeDatabases(){
+
+    	myLoginData = new Login_Database();
+
+    	int id = 1;
+
+    	myLoginData.addUsers(id++, new User("1234","Librarian"));
+    	myLoginData.addUsers(id++, new User("1234","Judge"));
+    	for(int i = 0; i < 100; i++){
+    		myLoginData.addUsers(id++, new User("1234","User"));
+    	}
+    	System.out.print(myLoginData);
+    	myEntryData = new Entry_Database();
+    }
 }
+
+
+
+
+
+
+
+
 
 

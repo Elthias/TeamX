@@ -68,6 +68,7 @@ public class Contestant_Page {
 	 */
 	private final JPanel myP3;
 
+	private int myID;
 
 	/**
 	 * Constructor of Contestant page. It initializes all fields and calls some methods with layout.
@@ -75,7 +76,7 @@ public class Contestant_Page {
 	 */
 	public Contestant_Page(int theUserID, Entry_Database theEntryData) {
 		myID = theUserID;
-		myEntry = new Entry();
+		myEntry = new Entry(myID);
 		myEntryData = theEntryData;
 		myFrame = new JFrame();
 		myP = new JPanel();
