@@ -18,7 +18,7 @@ import javax.swing.JTable;
 /**
  * This class contains the user page GUI for a Judge. In it they may view and score various entries. Entries are populated
  * in a table to be displayed to the judge.
- * @author Dovi Bergman, Sukhpreet Singh Jawandha, Kenneth Patterson
+ * @author Dovi Bergman, Kenneth Patterson
  *
  */
 public class Judge_Page {
@@ -109,6 +109,7 @@ public class Judge_Page {
 		myP2.add(scroll, BorderLayout.CENTER);
 		setFrame();
 		logoutButton.addActionListener(new ExitAction());
+		
 	}
 
 	/**
