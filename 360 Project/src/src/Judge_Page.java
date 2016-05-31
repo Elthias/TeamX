@@ -177,7 +177,7 @@ public class Judge_Page {
 		k = 0;
 		for (Integer i: myEntryData.keySet()) {
 			Entry x = myEntryData.getEntry(i);
-			table[k][0] = i;
+			table[k][0] = x.getName();
 			table[k][1] = x.getScore();
 			table[k][2] = x.getNotes();
 			k++;
