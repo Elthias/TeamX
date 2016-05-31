@@ -45,6 +45,12 @@ public class Login_Page {
 	private final Login_Database myLogin_Database;
 	
 	/**
+	 * Entry Database for the user pages
+	 */
+	
+	private final Entry_Database myEntryDatabase
+	
+	/**
 	 * Frame to add panel.
 	 */
 	private final JFrame myFrame;
@@ -93,7 +99,7 @@ public class Login_Page {
 	/**
 	 * Constructor of Login page. It initialize all fields and call some methods.
 	 */
-	public Login_Page() {
+	public Login_Page(Login_Database theLoginData, Entry_Database theEntryData) {
 		myLoginID = 0;
 		myPass = null;
 		myFrame = new JFrame();
@@ -106,7 +112,8 @@ public class Login_Page {
 		myIDField = new JTextField("", 12);
 		myPassField = new JPasswordField(12);
 		
-		myLogin_Database = new Login_Database();
+		myLogin_Database = theLoginData;
+		myEntry_Database = theEntryData;
 			
 		myP.setLayout(new GridLayout(3, 1));
 		myP2.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -202,7 +209,7 @@ public class Login_Page {
 		private int myID;
 		private String myPassword;
 		private String myRole;
-		private boolean myValidLogin;
+		//private boolean myValidLogin;
 		
 		/**
 		 * A constructor for a LoginAction that takes 2 parameters
@@ -219,9 +226,8 @@ public class Login_Page {
 		 * @param theEvent = the ActionEvent that triggers this action, which chould be a button press of the login button.
 		 */
 		public void actionPerformed(ActionEvent theEvent) {
-			myValidLogin = myLogin_Database.checkLogin(theID, thePassword);
-			if (myValidLogin) {
-				myRole = myLogin_Database.getRole(theID);
+			myRole = myLogin_Database.checkLogin(theID, thePassword);
+			if (myRole != null) {
 				login (myRole, myID);
 			}
 			
@@ -238,11 +244,11 @@ public class Login_Page {
 			myIDField.setText(null);
 			
 			if (theRole == "judge") {
-				Judge_Page jPage = new Judge_Page();
+				Judge_Page jPage = new Judge_Page(myEntry_Database);
 			} else if (theRole == "librarian") {
-				Librarian_Page lPage = new Librarian_Page();
+				Librarian_Page lPage = new Librarian_Page(myEntry_Database);
 			} else if (theRole == "contestant") {
-				Contestant_Page cPage = new Contestant_Page(theID);
+				Contestant_Page cPage = new Contestant_Page(theID, myEntry_Database);
 			}
 			
 			return myValidLogin;
