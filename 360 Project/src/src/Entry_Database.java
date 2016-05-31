@@ -2,10 +2,11 @@ package src;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This class is a Entry database which stores the entries submitted by users.
- * @author Sarjodh Dhillon
+ * @author Sarjodh Dhillon, Ken Patterson
  * @version 05/28/2016
  */
 public class Entry_Database {
@@ -54,8 +55,23 @@ public class Entry_Database {
 	 * @param theCat is the category assigned to the user.
 	 */
 	public void setCategory(int theId, String theCat) {
-		myEntries.get(theCat).setCat(theCat);
+		myEntries.get(theId).setCat(theCat);
 	}
 	
+	/**
+	 * This method returns a reference to all of the entries' keys in order to more easily obtain entries.
+	 * @return the set of all keys to reference the entries
+	 */
+	public Set<Integer> keySet() {
+		return myEntries.keySet();
+	}
+	
+	/**
+	 * This method returns the number of entries contained in the set of keys to the data structure.
+	 * @return the number of entries
+	 */
+	public int size() {
+		return myEntries.keySet().size();
+	}
 }
 	
