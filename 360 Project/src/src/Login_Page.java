@@ -226,6 +226,8 @@ public class Login_Page {
 		 * @param theEvent = the ActionEvent that triggers this action, which chould be a button press of the login button.
 		 */
 		public void actionPerformed(ActionEvent theEvent) {
+			myID = Integer.parseInt(myIDField.getText());
+			myPassword = new String(myPassField.getPassword());
 			myRole = myLogin_Database.checkLogin(myID, myPassword);
 			if (myRole != null) {
 				login (myRole, myID);
@@ -238,7 +240,7 @@ public class Login_Page {
 		 * @param theRole = the role retrieved for this user from the Login_Database. 
 		 * @param theID = the ID number of the user logging in.
 		 */
-		public boolean login (String theRole, int theID) {
+		public void login (String theRole, int theID) {
 			
 			myPassField.setText(null);
 			myIDField.setText(null);
@@ -250,8 +252,6 @@ public class Login_Page {
 			} else if (theRole == "contestant") {
 				Contestant_Page cPage = new Contestant_Page(theID, myEntryDatabase);
 			}
-			
-			return myValidLogin;
 			
 		}
 	}

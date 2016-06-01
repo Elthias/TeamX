@@ -37,13 +37,16 @@ public class Main {
 
     	int id = 1;
 
-    	myLoginData.addUsers(id++, new User("1234","Librarian"));
-    	myLoginData.addUsers(id++, new User("1234","Judge"));
+    	myLoginData.addUsers(id++, new User("1234","librarian"));
+    	myLoginData.addUsers(id++, new User("1234","judge"));
     	for(int i = 0; i < 100; i++){
-    		myLoginData.addUsers(id++, new User("1234","User"));
+    		myLoginData.addUsers(id++, new User("1234","contestant"));
     	}
     	System.out.print(myLoginData);
     	myEntryData = new Entry_Database();
+    	for (int j = 0; j < 100; j++) {
+//    		Entry e = new Entry(j, );
+    	}
     }
 }
 

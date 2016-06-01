@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * This class is an Entry class which keeps track of an Entry 
  * submitted by a User.
- * @author Sarjodh Dhillon
+ * @author Sarjodh Dhillon, Ken Patterson
  * @version 05/28/2016
  */
 public class Entry {
@@ -45,9 +45,8 @@ public class Entry {
 	 * @param theId is an Id of user.
 	 * @param theName is the name of an entry.
 	 */
-	public Entry(int theId, String theName) {
+	public Entry(int theId) {
 		myId = theId;
-		myName = theName;
 	}
 
 	/**
@@ -80,6 +79,14 @@ public class Entry {
 	 */
 	public void setNotes(String theNotes) {
 		myNotes = theNotes;
+	}
+	
+	/**
+	 * This method sets the name to the entry.
+	 * @param theName is the name.
+	 */
+	public void setName(String theName) {
+		myName = theName;
 	}
 	
 	/**

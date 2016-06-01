@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -113,9 +116,9 @@ public class Contestant_Page {
 		JTextField name = new JTextField("", 12);
 		name.setLocation(10, 10);
 		name.addActionListener(new ActionListener() {
-			@override
+			@Override
 			public void actionPerformed(ActionEvent theEvent) {
-				myEntry.setMyName(name.getText());
+				myEntry.setName(name.getText());
 			}
 		});
 		myP1.add(name);
@@ -128,16 +131,35 @@ public class Contestant_Page {
 		String[] cat = {"Science", "US History", "Politics", "Sci-fi", "Romance"};
 		JComboBox<?> myCombo = new JComboBox<Object>(cat);
 		myCombo.addActionListener(new ActionListener() {
-			@override
+			@Override
 			public void actionPerformed(ActionEvent theEvent) {
-				myEntry.setMyCategory(myCombo.getSelectedItem().toString());
+				myEntry.setCat(myCombo.getSelectedItem().toString());
 			}			
 		});		
 		myP1.add(myCombo);
 
 		JButton delete = new JButton("Delete Entry");
+		myP1.add(delete);
+		delete.setVisible(false);
+
+		JButton logout = new JButton("Logout");
+		logout.addActionListener(new ExitAction());
+		myP1.add(logout);
+		JButton chooseFile = new JButton("Choose a file...");
+		myP1.add(chooseFile);
+
+		JButton submit = new JButton("Submit");
+		chooseFile.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent theEvent) {
+				JFileChooser fileChoose=new JFileChooser();
+         		int fileOpen=fileChoose.showOpenDialog(myFrame);
+				submit.setEnabled(true);
+				submit.setVisible(true);
+			}
+		});
 		delete.addActionListener(new ActionListener() {
-			@override
+			@Override
 			public void actionPerformed(ActionEvent theEvent) {
 				myEntryData.deleteEntry(myID);
 				delete.setVisible(false);
@@ -147,30 +169,14 @@ public class Contestant_Page {
 				name.setEditable(true);
 			}
 		});
-		myP1.add(delete);
-		delete.setVisible(false);
-
-		JButton logout = new JButton("Logout");
-		logout.addActionListener(new ExitAction());
-		myP1.add(logout);
-		JButton chooseFile = new JButton("Choose a file...");
-		myP1.add(chooseFile);
-		chooseFile.addActionListener(new ActionListener() {
-			@override
-			public void actionPerformed(ActionEvent theEvent) {
-		 JFileChooser fileChoose=new JFileChooser();
-         int fileOpen=fileChoose.showOpenDialog(myFrame);
-			}
-		});
-
-		JButton submit = new JButton("Submit");
 		submit.setEnabled(false);
 		submit.addActionListener(new ActionListener() {
-			@override
+			@Override
 			public void actionPerformed(ActionEvent theEvent) {
 				myEntryData.addEntry(myID, myEntry);
+				delete.setEnabled(true);
 				delete.setVisible(true);
-				submit.setVisible(false);
+				submit.setEnabled(false);
 				submit.setVisible(false);
 				cate.setVisible(false);
 				myCombo.setVisible(false);
