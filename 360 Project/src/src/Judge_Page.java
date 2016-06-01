@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -108,7 +110,12 @@ public class Judge_Page {
 		JScrollPane scroll = new JScrollPane(myEntries);
 		myP2.add(scroll, BorderLayout.CENTER);
 		setFrame();
-		logoutButton.addActionListener(new ExitAction());
+		logoutButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent theEvent) {
+				myFrame.setVisible(false);
+			}
+		});
 		
 	}
 

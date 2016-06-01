@@ -143,7 +143,15 @@ public class Contestant_Page {
 		delete.setVisible(false);
 
 		JButton logout = new JButton("Logout");
-		logout.addActionListener(new ExitAction());
+		//logout.addActionListener(new ExitAction());
+		
+		logout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent theEvent) {
+				myFrame.setVisible(false);
+			}
+		});
+		
 		myP1.add(logout);
 		JButton chooseFile = new JButton("Choose a file...");
 		myP1.add(chooseFile);

@@ -44,9 +44,6 @@ public class Main {
     	}
     	System.out.print(myLoginData);
     	myEntryData = new Entry_Database();
-    	for (int j = 0; j < 100; j++) {
-//    		Entry e = new Entry(j, );
-    	}
     }
 }
 
