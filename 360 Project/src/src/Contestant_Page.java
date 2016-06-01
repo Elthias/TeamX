@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -133,7 +134,7 @@ public class Contestant_Page {
 		myCombo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent theEvent) {
-				myEntry.setCat(myCombo.getSelectedItem().toString());
+				myEntry.setCat((String)myCombo.getSelectedItem());
 			}			
 		});		
 		myP1.add(myCombo);
@@ -161,9 +162,11 @@ public class Contestant_Page {
 			@Override
 			public void actionPerformed(ActionEvent theEvent) {
 				JFileChooser fileChoose=new JFileChooser();
-         		int fileOpen=fileChoose.showOpenDialog(myFrame);
+         		fileChoose.showOpenDialog(myFrame);
 				submit.setEnabled(true);
 				submit.setVisible(true);
+				File file  = fileChoose.getSelectedFile();
+				myEntry.setEntry(file);
 			}
 		});
 		delete.addActionListener(new ActionListener() {
