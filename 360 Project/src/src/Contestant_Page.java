@@ -184,6 +184,8 @@ public class Contestant_Page {
 		submit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent theEvent) {
+				myEntry.setCat((String)myCombo.getSelectedItem());
+				myEntry.setName(name.getText());
 				myEntryData.addEntry(myID, myEntry);
 				delete.setEnabled(true);
 				delete.setVisible(true);
