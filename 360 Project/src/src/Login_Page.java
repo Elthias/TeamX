@@ -108,7 +108,6 @@ public class Login_Page {
 		myP1 = new JPanel();
 		myP2 = new JPanel();
 		myP3 = new JPanel();
-		myPassField = new JPasswordField();
 		myIDField = new JTextField("", 12);
 		myPassField = new JPasswordField(12);
 		

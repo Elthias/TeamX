@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -58,20 +59,13 @@ public class Contestant_Page {
 	private final JPanel myP;
 
 	/**
-	 * Panel to cover the space.
+	 * Panel for the buttons and fields.
 	 */
 	private final JPanel myP1;
 
 	/**
-	 * Panel for Account Login and password fields and labels.
+	 * The ID of this contestant, used as a key for the new Entry in the Entry database.
 	 */
-	private final JPanel myP2;
-
-	/**
-	 * Panel for Login Button.
-	 */
-	private final JPanel myP3;
-
 	private int myID;
 
 	/**
@@ -89,22 +83,23 @@ public class Contestant_Page {
 		myP1.setLayout(new GridLayout(10,10,100,25));
 		myP1.setBackground(Color.YELLOW.darker().darker());
 		myP1.setPreferredSize( new Dimension(200, 600));
-		myP2 = new JPanel();
-		myP2.setPreferredSize(new Dimension(300, 525));
-		myP2.setBackground(Color.WHITE);
-		myP2.setBorder(BorderFactory.createLineBorder(Color.black));
-		myP3 = new JPanel();
-		myP3.setBackground(Color.YELLOW.darker().darker());
 		myP.add(myP1);
-		myP.add(myP2);
-		myP1.add(myP3);
-
 		myFrame.add(myP);
 		SetFrame();
 		Entry();
 
 	}
 
+	/**
+	 * It prints the title on the top of the panel with size and style.
+	 *//*
+	private void namePanel() {
+		final JLabel title = new JLabel("Clark County Library");
+		title.setFont(new Font("Serif", Font.BOLD, 40));
+		title.setForeground(Color.WHITE);
+		myP1.add(title, BorderLayout.NORTH);
+	}*/
+	
 	/**
 	 * This function creates the buttons, label and fields to submit the entry and adds to the main panel.
 	 */
