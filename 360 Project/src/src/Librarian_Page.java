@@ -63,6 +63,12 @@ public class Librarian_Page {
 	 * Table to display the various entry information.
 	 */
 	private JTable myEntries;
+
+	/**
+	 * The Object array with the data for myEntries.
+	 * @author Dovi Bergman
+	 */
+	private Object[][] myTableModel;
 	
 	/**
 	 * Data structure to hold information on current entries.
@@ -101,6 +107,14 @@ public class Librarian_Page {
 			@Override
 			public void actionPerformed(ActionEvent theEvent) {
 				myFrame.setVisible(false);
+				
+				int k = 0;
+				for (Integer i : myEntryData.keySet()) {
+					Entry x = myEntryData.getEntry(i);
+					x.setCat((String)myTableModel[k][2]);
+					x.setNotes((String)myTableModel[k][3]);
+					k++;
+				}
 			}
 		});
 	}
@@ -170,17 +184,17 @@ public class Librarian_Page {
 	 */
 	private Object[][] createData() {
 		int k = myEntryData.size();
-		Object[][] table = new Object[k][4];
+		myTableModel = new Object[k][4];
 		k = 0;
 		for (Integer i: myEntryData.keySet()) {
 			Entry x = myEntryData.getEntry(i);
-			table[k][0] = i;
-			table[k][1] = x.getName();
-			table[k][2] = x.getCat();
-			table[k][3] = x.getNotes();
+			myTableModel[k][0] = i;
+			myTableModel[k][1] = x.getName();
+			myTableModel[k][2] = x.getCat();
+			myTableModel[k][3] = x.getNotes();
 			k++;
 		}
-		return table;
+		return myTableModel;
 	}
 
 	/**
