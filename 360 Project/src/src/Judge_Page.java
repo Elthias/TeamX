@@ -78,16 +78,11 @@ public class Judge_Page {
 	 * Button which may be used to save the data in the table.
 	 */
 	private JButton saveButton;
-	
-	/**
-	 * Label used to display the category which the judge is viewing.
-	 */
-	private JLabel myCategory;
-	
+		
 	/**
 	 * The Object array with the data for myEntries.
-	 * @author Dovi Bergman
 	 */
+	
 	private Object[][] myTableModel;
 	
 	/**
@@ -117,8 +112,6 @@ public class Judge_Page {
 			}
 			
 		});
-		myCategory = new JLabel();
-		myCategory.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 24));
 		
 		myEntryData = theEntryData;
 		
@@ -185,10 +178,6 @@ public class Judge_Page {
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(0, 10, 0, 10);
 		myP3.add(saveButton, c);
-		c.gridx = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		myP3.add(myCategory, c);
-		c.gridx = 2;
 		c.anchor = GridBagConstraints.EAST;
 		c.insets = new Insets(0, 10, 0, 10);
 		myP3.add(logoutButton, c);
@@ -214,8 +203,6 @@ public class Judge_Page {
 		k = 0;
 		for (Integer i: myEntryData.keySet()) {
 			Entry x = myEntryData.getEntry(i);
-			if (myCategory.getText().equals(""))
-				myCategory.setText("Category: " + x.getCat());
 			table[k][0] = x.getName();
 			table[k][1] = x.getScore();
 			table[k][2] = x.getNotes();

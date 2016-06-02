@@ -66,8 +66,8 @@ public class Librarian_Page {
 
 	/**
 	 * The Object array with the data for myEntries.
-	 * @author Dovi Bergman
 	 */
+	
 	private Object[][] myTableModel;
 	
 	/**
@@ -79,6 +79,11 @@ public class Librarian_Page {
 	 * Button which can be used to logout of the current user.
 	 */
 	private JButton logoutButton;
+
+	/**
+	 * Button which may be used to save the data in the table.
+	 */
+	private JButton saveButton;
 	
 	/**
 	 * Constructor of Judge page. Loads an entry database to be used in populating the database.
@@ -92,7 +97,7 @@ public class Librarian_Page {
 		myP3 = new JPanel();
 		myEntries = new JTable();
 		logoutButton = new JButton("Logout");
-		
+		saveButton = new JButton("Save");
 		myEntryData = theEntryData;
 		
 		setLayout();
@@ -103,20 +108,6 @@ public class Librarian_Page {
 		JScrollPane scroll = new JScrollPane(myEntries);
 		myP2.add(scroll, BorderLayout.CENTER);
 		setFrame();
-		logoutButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent theEvent) {
-				myFrame.setVisible(false);
-				
-				int k = 0;
-				for (Integer i : myEntryData.keySet()) {
-					Entry x = myEntryData.getEntry(i);
-					x.setCat((String)myTableModel[k][2]);
-					x.setNotes((String)myTableModel[k][3]);
-					k++;
-				}
-			}
-		});
 	}
 
 	/**
@@ -166,7 +157,27 @@ public class Librarian_Page {
 		c.anchor = GridBagConstraints.EAST;
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(0, 10, 0, 10);
+		logoutButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent theEvent) {
+				myFrame.setVisible(false);	
+			}
+		});
 		myP3.add(logoutButton, c);
+		c.anchor = GridBagConstraints.WEST;
+		saveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int k = 0;
+				for (Integer i : myEntryData.keySet()) {
+					Entry x = myEntryData.getEntry(i);
+					x.setCat((String)myTableModel[k][2]);
+					x.setNotes((String)myTableModel[k][3]);
+					k++;
+				}	
+			}
+		});
+		myP3.add(saveButton, c);
 		myP.setVisible(true);
 	}
 	
