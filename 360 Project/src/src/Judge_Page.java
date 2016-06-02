@@ -85,6 +85,12 @@ public class Judge_Page {
 	private JLabel myCategory;
 	
 	/**
+	 * The Object array with the data for myEntries.
+	 * @author Dovi Bergman
+	 */
+	private Object[][] myTableModel;
+	
+	/**
 	 * Constructor of Judge page. Loads an entry database to be used in populating the database.
 	 * @param theEntryData
 	 */
@@ -97,6 +103,20 @@ public class Judge_Page {
 		myEntries = new JTable();
 		logoutButton = new JButton("Logout");
 		saveButton = new JButton("Save");
+		saveButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int k = 0;
+				for (Integer i : myEntryData.keySet()) {
+					Entry x = myEntryData.getEntry(i);
+					x.setScore((Integer)myTableModel[k][1]);
+					x.setNotes((String)myTableModel[k][2]);
+					k++;
+				}
+			}
+			
+		});
 		myCategory = new JLabel();
 		myCategory.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 24));
 		
@@ -180,7 +200,8 @@ public class Judge_Page {
 	 */
 	private void fillTable() {
 		String[] titles = {"Entry Name", "Score", "Notes"};
-		myEntries = new JTable(createData(), titles);
+		myTableModel = createData();
+		myEntries = new JTable(myTableModel, titles);
 	}
 	
 	/**
