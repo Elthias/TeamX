@@ -184,6 +184,7 @@ public class Contestant_Page {
 				myEntryData.addEntry(myID, myEntry);
 				delete.setEnabled(true);
 				delete.setVisible(true);
+				chooseFile.setVisible(false);
 				submit.setEnabled(false);
 				submit.setVisible(false);
 				cate.setVisible(false);
