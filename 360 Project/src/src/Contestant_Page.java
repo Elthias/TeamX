@@ -171,6 +171,7 @@ public class Contestant_Page {
 				delete.setVisible(false);
 				submit.setVisible(true);
 				cate.setVisible(true);
+				chooseFile.setVisible(true);
 				myCombo.setVisible(true);
 				name.setEditable(true);
 			}
