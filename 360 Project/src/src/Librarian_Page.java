@@ -186,7 +186,8 @@ public class Librarian_Page {
 	 */
 	private void fillTable() {
 		String[] titles = {"ID", "Entry Name", "Category", "Notes"};
-		myEntries = new JTable(createData(), titles);
+		myTableModel = createData();
+		myEntries = new JTable(myTableModel, titles);
 	}
 	
 	/**
@@ -195,17 +196,17 @@ public class Librarian_Page {
 	 */
 	private Object[][] createData() {
 		int k = myEntryData.size();
-		myTableModel = new Object[k][4];
+		Object[][] table = new Object[k][4];
 		k = 0;
 		for (Integer i: myEntryData.keySet()) {
 			Entry x = myEntryData.getEntry(i);
-			myTableModel[k][0] = i;
-			myTableModel[k][1] = x.getName();
-			myTableModel[k][2] = x.getCat();
-			myTableModel[k][3] = x.getNotes();
+			table[k][0] = i;
+			table[k][1] = x.getName();
+			table[k][2] = x.getCat();
+			table[k][3] = x.getNotes();
 			k++;
 		}
-		return myTableModel;
+		return table;
 	}
 
 	/**

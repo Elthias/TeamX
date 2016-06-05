@@ -105,7 +105,7 @@ public class Judge_Page {
 				int k = 0;
 				for (Integer i : myEntryData.keySet()) {
 					Entry x = myEntryData.getEntry(i);
-					x.setScore((Integer)myTableModel[k][1]);
+					x.setScore(Integer.parseInt((String)myTableModel[k][1]));
 					x.setNotes((String)myTableModel[k][2]);
 					k++;
 				}
