@@ -218,4 +218,8 @@ public class Librarian_Page {
 		title.setForeground(Color.WHITE);
 		myP1.add(title);
 	}
+	
+	public JFrame getFrame() {
+		return myFrame;
+	}
 }
