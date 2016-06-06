@@ -109,7 +109,7 @@ public class Contestant_Page {
 		entryName.setForeground(Color.WHITE);
 
 		myP1.add(entryName);
-		JTextField name = new JTextField("", 12);
+		final JTextField name = new JTextField("", 12);
 		name.setLocation(10, 10);
 		name.addActionListener(new ActionListener() {
 			@Override
@@ -125,7 +125,7 @@ public class Contestant_Page {
 		myP1.add(cate);
 
 		String[] cat = {"Science", "US History", "Politics", "Sci-fi", "Romance"};
-		JComboBox<?> myCombo = new JComboBox<Object>(cat);
+		final JComboBox<?> myCombo = new JComboBox<Object>(cat);
 		myCombo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent theEvent) {
@@ -134,7 +134,7 @@ public class Contestant_Page {
 		});		
 		myP1.add(myCombo);
 
-		JButton delete = new JButton("Delete Entry");
+		final JButton delete = new JButton("Delete Entry");
 		myP1.add(delete);
 		delete.setVisible(false);
 
@@ -149,10 +149,10 @@ public class Contestant_Page {
 		});
 		
 		myP1.add(logout);
-		JButton chooseFile = new JButton("Choose a file...");
+		final JButton chooseFile = new JButton("Choose a file...");
 		myP1.add(chooseFile);
 
-		JButton submit = new JButton("Submit");
+		final JButton submit = new JButton("Submit");
 		chooseFile.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent theEvent) {
