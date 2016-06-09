@@ -5,12 +5,21 @@ import java.awt.EventQueue;
 
 public class Main {
 
-
+	/**
+	 * The login data base
+	 */
 	private static Login_Database myLoginData;
-
+	/**
+	 * The entry database
+	 */
 	private static Entry_Database myEntryData;
 
-	
+	/**
+	 * This class is a driver for the library contest app.
+	 * It also deals with creating and updating the databases.
+	 * @author David Rainey
+	 * @version 06/09/2016
+	 */
 	private Main() {
         throw new IllegalStateException();
     }
