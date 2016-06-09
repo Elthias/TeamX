@@ -36,7 +36,7 @@ public class Contestant_Page {
 	/**
 	 * field to keep track of entry.
 	 */
-	private final Entry myEntry;
+	private Entry myEntry;
 
 	/**
 	 * field for entry database.
@@ -84,7 +84,10 @@ public class Contestant_Page {
 	 */
 	public Contestant_Page(int theUserID, Entry_Database theEntryData) {
 		myID = theUserID;
-		myEntry = new Entry(myID);
+		myEntry = theEntryData.getEntry(myID);
+		if (theEntryData.getEntry(myID) == null) {
+			myEntry = new Entry(myID);
+		}
 		myEntryData = theEntryData;
 		myFrame = new JFrame();
 		myP = new JPanel();
@@ -165,7 +168,7 @@ public class Contestant_Page {
 	 * This function creates the buttons, label and fields to submit the entry and adds to the main panel.
 	 */
 	private void Entry() {
-		final JLabel entryName = new JLabel("Entry Name :");
+		final JLabel entryName = new JLabel("Entry Name:");
 		GridBagConstraints c = new GridBagConstraints();
 		entryName.setFont(new Font(Font.SERIF, Font.BOLD, 25));
 		entryName.setForeground(Color.WHITE);
@@ -235,7 +238,7 @@ public class Contestant_Page {
 				submit.setVisible(true);
 				//cate.setVisible(true);
 				//myCombo.setVisible(true);
-				cate.setEnabled(true);
+				//cate.setEnabled(true);
 				myCombo.setEnabled(true);
 				name.setEditable(true);
 			}
@@ -253,13 +256,25 @@ public class Contestant_Page {
 				submit.setVisible(false);
 				//cate.setVisible(false);
 				//myCombo.setVisible(false);
-				cate.setEnabled(false);
+				//cate.setEnabled(false);
 				myCombo.setEnabled(false);
 				name.setEditable(false);
 			}
 		});
 		myP2.add(submit, c);
-
+		if (myEntryData.getEntry(myID) != null) {
+			delete.setEnabled(true);
+			delete.setVisible(true);
+			chooseFile.setVisible(false);
+			submit.setVisible(false);
+			//cate.setVisible(false);
+			//myCombo.setVisible(false);
+			//cate.setEnabled(false);
+			myCombo.setEnabled(false);
+			name.setEditable(false);
+			myCombo.setSelectedItem((Object)myEntry.getCat());
+			name.setText(myEntry.getName());
+		}
 	}
 
 	/**
