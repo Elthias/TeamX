@@ -96,15 +96,6 @@ public class Contestant_Page {
 		myP3 = new JPanel(new GridBagLayout());
 		logoutButton = new JButton("Logout");
 		
-		myP.setBackground(new Color(0, 76, 112));
-		//myP2.setLayout(new GridLayout(10,10,100,25));
-		
-
-		// Changed lower background to a lighter yellow
-		//myP2.setBackground(new Color(255, 255, 77));
-		//myP3.setBackground(new Color(255, 255, 77));
-		// Changed upper background to a light blue
-		//myP2.setPreferredSize( new Dimension(200, 100));
 		setLayout();
 		namePanel();
 		Entry();
@@ -177,13 +168,6 @@ public class Contestant_Page {
 		c.weighty = 0.5;
 		myP2.add(entryName, c);
 		final JTextField name = new JTextField("", 12);
-		name.setLocation(10, 10);
-		name.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent theEvent) {
-				myEntry.setName(name.getText());
-			}
-		});
 		myP2.add(name, c);
 
 		final JLabel cate = new JLabel("Categories:");
@@ -194,12 +178,6 @@ public class Contestant_Page {
 
 		String[] cat = {"Science", "US History", "Politics", "Sci-fi", "Romance"};
 		final JComboBox<?> myCombo = new JComboBox<Object>(cat);
-		myCombo.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent theEvent) {
-				myEntry.setCat((String)myCombo.getSelectedItem());
-			}			
-		});	
 		myP2.add(myCombo, c);
 
 		final JButton delete = new JButton("Delete Entry");
@@ -236,9 +214,6 @@ public class Contestant_Page {
 				delete.setVisible(false);
 				chooseFile.setVisible(true);
 				submit.setVisible(true);
-				//cate.setVisible(true);
-				//myCombo.setVisible(true);
-				//cate.setEnabled(true);
 				myCombo.setEnabled(true);
 				name.setEditable(true);
 			}
@@ -254,9 +229,6 @@ public class Contestant_Page {
 				delete.setVisible(true);
 				chooseFile.setVisible(false);
 				submit.setVisible(false);
-				//cate.setVisible(false);
-				//myCombo.setVisible(false);
-				//cate.setEnabled(false);
 				myCombo.setEnabled(false);
 				name.setEditable(false);
 			}
@@ -267,9 +239,6 @@ public class Contestant_Page {
 			delete.setVisible(true);
 			chooseFile.setVisible(false);
 			submit.setVisible(false);
-			//cate.setVisible(false);
-			//myCombo.setVisible(false);
-			//cate.setEnabled(false);
 			myCombo.setEnabled(false);
 			name.setEditable(false);
 			myCombo.setSelectedItem((Object)myEntry.getCat());
