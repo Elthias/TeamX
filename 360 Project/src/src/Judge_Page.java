@@ -105,7 +105,9 @@ public class Judge_Page {
 				int k = 0;
 				for (Integer i : myEntryData.keySet()) {
 					Entry x = myEntryData.getEntry(i);
-					x.setScore(Integer.parseInt((String)myTableModel[k][1]));
+					if (myTableModel[k][1].getClass() != Integer.class) {
+						x.setScore(Integer.parseInt((String)myTableModel[k][1]));
+					}
 					x.setNotes((String)myTableModel[k][2]);
 					k++;
 				}
@@ -153,10 +155,10 @@ public class Judge_Page {
 		myP.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		myP2.setLayout(new BorderLayout());
-		// Changed lower background to an orange yellow
-		myP3.setBackground(new Color(240, 213, 100));
-		// Changed upper background to a royal blue
-		myP1.setBackground(new Color(29, 91, 124));
+		// Changed lower background to a lighter yellow
+		myP3.setBackground(new Color(255, 255, 77));
+		// Changed upper background to a light blue
+		myP1.setBackground(new Color(77, 166, 255));
 		c.gridwidth = 3;
 		c.gridheight = 1;
 		c.gridx = 0;
@@ -174,13 +176,13 @@ public class Judge_Page {
 		c.weighty = 0.4;
 		myP.add(myP3, c);
 		myP3.setLayout(new GridBagLayout());
-		c.anchor = GridBagConstraints.WEST;
+		c.gridx = 2;
+		c.anchor = GridBagConstraints.EAST;
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(0, 10, 0, 10);
-		myP3.add(saveButton, c);
-		c.anchor = GridBagConstraints.EAST;
-		c.insets = new Insets(0, 10, 0, 10);
 		myP3.add(logoutButton, c);
+		c.anchor = GridBagConstraints.WEST;
+		myP3.add(saveButton, c);
 		myP.setVisible(true);
 	}
 	

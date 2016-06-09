@@ -104,7 +104,7 @@ public class Login_Page {
 		myP = new JPanel();
 		myP1 = new JPanel();
 		myP2 = new JPanel();
-		myP3 = new JPanel();
+		myP3 = new JPanel(new GridBagLayout());
 		myIDField = new JTextField("", 12);
 		myPassField = new JPasswordField(12);
 		
@@ -154,7 +154,7 @@ public class Login_Page {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.weightx = 1;
-		c.weighty = 0.1;
+		c.weighty = 0.05;
 		c.fill = GridBagConstraints.BOTH;
 		myP.add(myP1, c);
 		c.gridy = 1;
@@ -163,7 +163,7 @@ public class Login_Page {
 		myP.add(myP2, c);
 		c.gridy = 4;
 		c.gridheight = 1;
-		c.weighty = 0.1;
+		c.weighty = 0.05;
 		myP.add(myP3, c);
 	}
 
@@ -227,8 +227,11 @@ public class Login_Page {
 	 */
 	private void signIn() {
 		JButton login = new JButton("Login");
+		GridBagConstraints c = new GridBagConstraints();
 		login.addActionListener(new LoginAction(myLoginID, myPass));
-		myP3.add(login, BorderLayout.SOUTH);
+		c.gridwidth = 3;
+		c.gridx = 1;
+		myP3.add(login, c);
 	}
 	
 	/**
