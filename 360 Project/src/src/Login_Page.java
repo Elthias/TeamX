@@ -3,9 +3,9 @@ package src;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,13 +20,11 @@ import javax.swing.JTextField;
  * This class is the Login_Page GUI. It is the jumping off point for the whole GUI system, with users logging with this page and then
  * being shown a user specific page. Login attempts are checked by communicating with the Login_Database class.
  * 
-<<<<<<< HEAD
  * @author Dovi Bergman
  * @since 5/24/2016
 =======
- * @author Dovi Bergman, Sukhpreet Jawandha
+ * @author Dovi Bergman, Sukhpreet Jawandha, Kenneth Patterson
  * @version Last Modified 5/25/2016
->>>>>>> branch 'master' of https://github.com/Elthias/TeamX
  */
 public class Login_Page {
 	/**
@@ -103,7 +101,6 @@ public class Login_Page {
 		myLoginID = 0;
 		myPass = null;
 		myFrame = new JFrame();
-		setFrame();
 		myP = new JPanel();
 		myP1 = new JPanel();
 		myP2 = new JPanel();
@@ -113,19 +110,16 @@ public class Login_Page {
 		
 		myLogin_Database = theLoginData;
 		myEntryDatabase = theEntryData;
-			
-		myP.setLayout(new GridLayout(3, 1));
-		myP2.setLayout(new FlowLayout(FlowLayout.LEADING));
-		myP2.setBackground(Color.YELLOW.darker().darker());
-		myP3.setBackground(Color.YELLOW.darker().darker());
-		myP1.setBackground(Color.YELLOW.darker().darker());
+		
 		myP.add(myP1);
 		myP.add(myP2);
 		myP.add(myP3);
-		myFrame.add(myP);
+		setLayout();
 		namePanel();
 		login();
 		signIn();
+		myFrame.add(myP);
+		setFrame();
 	}
 
 	/**
@@ -138,7 +132,39 @@ public class Login_Page {
 		myFrame.setLocationRelativeTo(null);
 		myFrame.setVisible(true);
 		myFrame.setResizable(false);
+		myFrame.pack();
 
+	}
+	
+	/**
+	 * Adjusts the layout of the login page.
+	 */
+	private void setLayout() {
+		myP.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		myP2.setLayout(new GridBagLayout());
+		// Changed upper background to a light blue
+		myP1.setBackground(new Color(77, 166, 255));
+		// Changed middle background to a dark blue
+		myP2.setBackground(new Color(0, 76, 112));
+		// Changed lower background to a lighter yellow
+		myP3.setBackground(new Color(255, 255, 77));
+		c.gridwidth = 3;
+		c.gridheight = 1;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 1;
+		c.weighty = 0.1;
+		c.fill = GridBagConstraints.BOTH;
+		myP.add(myP1, c);
+		c.gridy = 1;
+		c.gridheight = 3;
+		c.weighty = 1;
+		myP.add(myP2, c);
+		c.gridy = 4;
+		c.gridheight = 1;
+		c.weighty = 0.1;
+		myP.add(myP3, c);
 	}
 
 	/**
@@ -146,7 +172,7 @@ public class Login_Page {
 	 */
 	private void namePanel() {
 		final JLabel title = new JLabel("Clark County Library");
-		title.setFont(new Font("Serif", Font.BOLD, 40));
+		title.setFont(new Font(Font.MONOSPACED, Font.BOLD, 40));
 		title.setForeground(Color.WHITE);
 		myP1.add(title, BorderLayout.NORTH);
 	}
@@ -155,31 +181,45 @@ public class Login_Page {
 	 * creates the login fields and labels applied action listeners.
 	 */
 	private void login() {
-		final JLabel account = new JLabel("               Account Number :");
-		account.setFont(new Font("Serif", Font.BOLD, 25));
+		final JPanel acctP = new JPanel();
+		final JPanel passP = new JPanel();
+		final JLabel account = new JLabel("Account Number:");
+		acctP.setBackground(new Color(0, 76, 112));
+		passP.setBackground(new Color(0, 76, 112));
+		GridBagConstraints c = new GridBagConstraints();
+		c.weightx = 1;
+		c.weighty = 1;
+		c.anchor = GridBagConstraints.CENTER;
+		account.setFont(new Font(Font.SERIF, Font.BOLD, 25));
 		account.setForeground(Color.WHITE);
-		myP2.add(account);
+		acctP.add(account);
 		
 		myIDField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent theEvent) {
 				myLoginID = Integer.parseInt(myIDField.getText());
 			}
 		});
-		myP2.add(myIDField);
+		c.gridx = 1;
+		c.gridwidth = 2;
+		acctP.add(myIDField);
 
-		final JLabel pass = new JLabel("                            Password :");
-		pass.setFont(new Font("Serif", Font.BOLD, 25));
+		final JLabel pass = new JLabel("Password:");
+		pass.setFont(new Font(Font.SERIF, Font.BOLD, 25));
 		pass.setForeground(Color.WHITE);
-		myP2.add(pass);
+		c.gridwidth = 1;
+		c.gridx = 0;
+		passP.add(pass);
 		
 		myPassField.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent theEvent) {
-				myPass = myPassField.getText();
+				myPass = new String(myPassField.getPassword());
 			}
 		});
-		myP2.add(myPassField);
+		passP.add(myPassField);
 		
+		myP2.add(acctP, c);
+		c.gridy = 2;
+		myP2.add(passP, c);
 	} 
 
 	/**
@@ -188,7 +228,7 @@ public class Login_Page {
 	private void signIn() {
 		JButton login = new JButton("Login");
 		login.addActionListener(new LoginAction(myLoginID, myPass));
-		myP3.add(login);
+		myP3.add(login, BorderLayout.SOUTH);
 	}
 	
 	/**
@@ -245,11 +285,11 @@ public class Login_Page {
 			myIDField.setText(null);
 			
 			if (theRole == "judge") {
-				Judge_Page jPage = new Judge_Page(myEntryDatabase);
+				new Judge_Page(myEntryDatabase);
 			} else if (theRole == "librarian") {
-				Librarian_Page lPage = new Librarian_Page(myEntryDatabase);
+				new Librarian_Page(myEntryDatabase);
 			} else if (theRole == "contestant") {
-				Contestant_Page cPage = new Contestant_Page(theID, myEntryDatabase);
+				new Contestant_Page(theID, myEntryDatabase);
 			}
 			
 		}
