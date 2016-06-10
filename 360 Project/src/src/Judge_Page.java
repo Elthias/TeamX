@@ -2,6 +2,7 @@ package src;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -9,6 +10,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -122,6 +127,25 @@ public class Judge_Page {
 		myFrame.add(myP);
 		namePanel();
 		fillTable();
+		myEntries.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int row = myEntries.getSelectedRow();
+					int col = myEntries.getSelectedColumn();
+					if (col == 0) {
+						for (Integer i: myEntryData.keySet()) {
+							Entry a = myEntryData.getEntry(i);
+							if (a.getName().equals((String) myEntries.getValueAt(row, col))) {
+								Desktop.getDesktop().open(a.getFile());
+							}
+						}
+					}
+				} catch (IOException x) {
+					System.out.println(x);
+				}
+			}
+		});
 		JScrollPane scroll = new JScrollPane(myEntries);
 		myP2.add(scroll, BorderLayout.CENTER);
 		setFrame();
@@ -198,6 +222,7 @@ public class Judge_Page {
 	/**
 	 * Takes data from entries and formats it in a way that the table can accept.
 	 * @return the data which is to be input into the table
+	 * @throws URISyntaxException 
 	 */
 	private Object[][] createData() {
 		int k = myEntryData.size();
