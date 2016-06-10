@@ -205,6 +205,7 @@ public class Contestant_Page {
 				submit.setVisible(true);
 				File file  = fileChoose.getSelectedFile();
 				myEntry.setEntry(file);
+				myEntryData.writeEntries();
 			}
 		});
 		delete.addActionListener(new ActionListener() {

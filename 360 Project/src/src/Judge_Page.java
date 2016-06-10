@@ -116,6 +116,7 @@ public class Judge_Page {
 					x.setNotes((String)myTableModel[k][2]);
 					k++;
 				}
+				myEntryData.writeEntries();
 			}
 			
 		});

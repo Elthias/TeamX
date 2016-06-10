@@ -174,7 +174,8 @@ public class Librarian_Page {
 					x.setCat((String)myTableModel[k][2]);
 					x.setNotes((String)myTableModel[k][3]);
 					k++;
-				}	
+				}
+				myEntryData.writeEntries();
 			}
 		});
 		myP3.add(saveButton, c);

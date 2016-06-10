@@ -1,7 +1,11 @@
 package src;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -21,6 +25,28 @@ public class Entry_Database {
 	 */
 	public Entry_Database() {
 		myEntries = new HashMap<Integer, Entry>();
+		try {
+			File f = new File("entries.csv");
+			if (!f.exists())
+				throw new IOException();
+			Scanner scan = new Scanner(f);
+			//scan.useDelimiter(",");
+			while (scan.hasNextLine()) {
+				Scanner s = new Scanner(scan.nextLine());
+				s.useDelimiter(",");
+				Entry e = new Entry(Integer.parseInt(s.next()));
+				e.setName(s.next());
+				e.setCat(s.next());
+				e.setEntry(new File(s.next()));
+				e.setNotes(s.next());
+				e.setScore(Integer.parseInt(s.next()));
+				this.addEntry(e.getId(), e);
+				s.close();
+			}
+			scan.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -72,6 +98,24 @@ public class Entry_Database {
 	 */
 	public int size() {
 		return myEntries.keySet().size();
+	}
+	
+	/**
+	 * Writes the entries in the database out to a file when they are saved or submitted.
+	 */
+	public void writeEntries() {
+		try {
+			FileWriter w = new FileWriter("entries.csv");
+			for (Integer i : myEntries.keySet()) {
+				Entry e = myEntries.get(i);
+				String s = e.getId() + "," + e.getName() + "," + e.getCat() + "," + e.getFile().toString() + ","
+						   + e.getNotes() + "," + e.getScore();
+				w.append(s);
+			}
+			w.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 	
