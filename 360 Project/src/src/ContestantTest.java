@@ -27,7 +27,8 @@ public class ContestantTest {
 	@Before
 	public void setUp() {
 		Random r = new Random();
-		myID = r.nextInt();
+		myID = r.nextInt(100);
+		myEntryData = new Entry_Database();
 		for (int i = 0; i < 20; i++) {
 			Entry e = new Entry(myID);
 			e.setCat("Science");
@@ -35,6 +36,7 @@ public class ContestantTest {
 			e.setName("Test Name");
 			e.setNotes("");
 			e.setScore(0);
+			myEntryData.addEntry(myID, e);
 		}
 	}
 
